@@ -12,30 +12,44 @@ This project involves finetuning the OLLAMA model, tweaking its parameters, and 
 
 4. **Kubernetes Deployment**: The Docker image is deployed to a Kubernetes cluster using a deployment configuration. A service is also created to expose the application.
 
-## Running the Project
+### Building the Docker Image Locally
 
-### Building the Docker Image
-
-1. To build the Docker image, run the following command:
+To build the Docker image locally, use the `docker build` command. Replace `your-image-name` with the name you want to give to your Docker image.
 
 ```bash
-docker build -t yourusername/llm-container:llm-image .
+docker build -t your-image-name .
+```
 
-Pushing the Docker Image to Docker Hub
-To push the Docker image to Docker Hub, first tag the image with your Docker Hub username and repository, then push it:
-docker tag llm-app:latest yourusername/llm-container:llm-image
-docker push yourusername/llm-container:llm-image
+### Running the Docker Image Locally
 
-Deploying to Kubernetes
-To deploy the application to Kubernetes, apply the deployment and service configurations:
+```bash
+docker run -p 8051:8051 your-image-
+```
+
+### Building and Pushing the Docker Image to Docker Hub
+
+To build the Docker image and push it to Docker Hub, use the docker build command followed by the docker push command. Replace yourusername with your Docker Hub username and your-image-name with the name you want to give to your Docker image.
+
+```bash
+docker build -t yourusername/your-image-name .
+docker push yourusername/your-image-name
+```
+
+## Deploying to Kubernetes
+
+### To deploy the application to Kubernetes, apply the deployment and service configurations:
+
+```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
+```
 
+## Accessing the Application
 
-Accessing the Application
 The application can be accessed in two ways:
 
-Directly via Docker: If you're running the Docker container directly, you can access the application at http://localhost:8051.
+1. Directly via Docker: If you're running the Docker container directly, you can access the application at http://localhost:8051.
 
-Via Kubernetes NodePort Service: If you've deployed the application to Kubernetes and exposed it via a NodePort service, you can access the application at http://localhost:30080.
-```
+2. Via Kubernetes NodePort Service: If you've deployed the application to Kubernetes and exposed it via a NodePort service, you can access the application at http://localhost:30080.
+
+
